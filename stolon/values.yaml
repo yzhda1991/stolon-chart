@@ -59,7 +59,7 @@ pgSuperuserName: "stolon"
 # pgSuperuserPassword: ""
 
 sentinel:
-  replicas: 3
+  replicas: 2
 
   ## Configure resource requests and limits.
   ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
@@ -79,7 +79,7 @@ sentinel:
   tolerations: []
 
 proxy:
-  replicas: 3
+  replicas: 2
   ## Set serviceType to nodePort if needed
   ## proxy is used to route RW requests to the master
   # serviceType: NodePort
@@ -102,7 +102,7 @@ proxy:
   tolerations: []
 
 keeper:
-  replicas: 3
+  replicas: 2
   uid_prefix: "stolon"
   ## Set serviceType to nodePort if needed
   ## keeper service is used to route RO requests to all nodes
@@ -140,7 +140,7 @@ keeper:
 persistence:
   ## Enable persistence using Persistent Volume Claims.
   ##
-  enabled: false
+  enabled: true
 
   ## Persistent Volume Access Mode.
   ##
@@ -151,7 +151,7 @@ persistence:
 
   ## Persistent Volume Storage Size.
   ##
-  size: 10Gi
+  size: 5Gi
 
 rbac:
   # Specifies whether RBAC resources should be created
@@ -162,4 +162,4 @@ serviceAccount:
   create: true
   # The name of the ServiceAccount to use.
   # If not set and create is true, a name is generated using the fullname template
-  # name: my-name
+  name: admin
