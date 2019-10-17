@@ -14,7 +14,7 @@ image: "sorintlab/stolon"
 ## Stolon image version.
 ## ref: https://hub.docker.com/r/sorintlab/stolon/tags/
 ##
-imageTag: "v0.13.0-pg11"
+imageTag: "master-pg10"
 
 ## Specify a imagePullPolicy: 'Always' if imageTag is 'latest', else set to 'IfNotPresent'.
 ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
@@ -145,6 +145,7 @@ persistence:
   ## Persistent Volume Access Mode.
   ##
   accessMode: ReadWriteOnce
+  storageClassName: nfs
 
   ## Persistant Volume Storage Class Name
   # storageClassName: "-"

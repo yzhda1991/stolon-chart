@@ -1,0 +1,57 @@
+[root@localhost stolon]# helm install --name applicaions-stolon .
+NAME:   applicaions-stolon
+LAST DEPLOYED: Fri Oct 18 05:07:11 2019
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Deployment
+NAME                                READY  UP-TO-DATE  AVAILABLE  AGE
+applicaions-stolon-stolon-proxy     0/2    2           0          1s
+applicaions-stolon-stolon-sentinel  0/2    2           0          1s
+
+==> v1/Job
+NAME                       COMPLETIONS  DURATION  AGE
+applicaions-stolon-stolon  0/1          1s        1s
+
+==> v1/Pod(related)
+NAME                                                 READY  STATUS             RESTARTS  AGE
+applicaions-stolon-stolon-6gtl2                      0/1    Pending            0         1s
+applicaions-stolon-stolon-keeper-0                   0/1    Pending            0         1s
+applicaions-stolon-stolon-proxy-77fd944bbd-2crvq     0/1    ContainerCreating  0         1s
+applicaions-stolon-stolon-proxy-77fd944bbd-bdcn5     0/1    ContainerCreating  0         1s
+applicaions-stolon-stolon-sentinel-5bff644f85-57dms  0/1    ContainerCreating  0         1s
+applicaions-stolon-stolon-sentinel-5bff644f85-pvd24  0/1    ContainerCreating  0         1s
+
+==> v1/Secret
+NAME                       TYPE    DATA  AGE
+applicaions-stolon-stolon  Opaque  2     1s
+
+==> v1/Service
+NAME                              TYPE       CLUSTER-IP      EXTERNAL-IP  PORT(S)   AGE
+applicaions-stolon-stolon-keeper  ClusterIP  10.100.106.130  <none>       5432/TCP  1s
+applicaions-stolon-stolon-proxy   ClusterIP  10.105.200.248  <none>       5432/TCP  1s
+
+==> v1/ServiceAccount
+NAME   SECRETS  AGE
+admin  1        1s
+
+==> v1/StatefulSet
+NAME                              READY  AGE
+applicaions-stolon-stolon-keeper  0/2    1s
+
+==> v1beta1/Role
+NAME                       AGE
+applicaions-stolon-stolon  1s
+
+==> v1beta1/RoleBinding
+NAME                       AGE
+applicaions-stolon-stolon  1s
+
+
+NOTES:
+Helm cluster in installed and initialized.
+
+
+To get superuser password run
+    PGPASSWORD=$(kubectl get secret --namespace zh-applications applicaions-stolon-stolon -o jsonpath="{.data.pg_su_password}" | base64 --decode; echo)
